@@ -1,7 +1,9 @@
+//packages/dependacies
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const consoleTable = require('console-table');
 
+//Fancy art logo
 const logo = require('asciiart-logo');
 const config = require('./package.json');
 console.log(logo(config).render());
@@ -94,10 +96,11 @@ function userChoice() {
 }
 
 // ===============
-// Function to view and delete departments, employess, roles.
+// Functions to view and delete departments, employess, roles.
 //Connection.query to connect to mysql
 // ===============
 
+//See all departments
 function viewAllDepartments() {
     connection.query(
         'SELECT * FROM Department', (err, res) => {
@@ -109,7 +112,7 @@ function viewAllDepartments() {
         }
     )
 }
-
+//All the roles
 function viewAllRoles() {
     connection.query(
         'select ro.title as Role_title, ro.salary as Salary , dept.name as DepartmentName from Role ro left join department as dept on dept.id = ro.department_id', (err, res) => {
@@ -121,7 +124,7 @@ function viewAllRoles() {
         }
     )
 }
-
+//editted sql query
 function viewAllEmployees() {
     const sql = 'Select emp.id as EmployeeID, concat(emp.first_name,"  ",emp.last_name ) as EmployeeName , ro.title as Job_tittle, ro.salary as Salary,dept.name as Department_Name,concat(emp2.first_name,"  ",emp2.last_name) as ManagerName from employee.employee as emp left join employee.employee as emp2 on emp2.id=emp.manager_id left join employee.Role as ro on emp.role_id=ro.id left join employee.department as dept on dept.id = ro.department_id';
     connection.query(
@@ -159,7 +162,7 @@ function addDepartment() {
 function addRoles() {
     console.log('aa');
 
-    // query all the depts
+    //Query all the departments
     connection.promise().query("SELECT * FROM Department")
         .then((res) => {
             return res[0].map(dept => {
@@ -208,9 +211,11 @@ function addRoles() {
         });
 }
 
+//Select Role
 function selectRole() {
     return connection.promise().query("SELECT * FROM role")
         .then(res => {
+            //just want a response
             return res[0].map(role => {
                 return {
                     name: role.title,
@@ -234,13 +239,14 @@ function selectManager() {
 }
 
 // ===============
-// Function to add employees
+// Function to add employees. Nothing but queries
+//replace promise with async/await function - keep things neat
 // ===============
 
+//adding employees and assigning managers
 async function addEmployee() {
 
     const managers = await selectManager();
-
 
     inquirer.prompt([
         {
@@ -262,7 +268,7 @@ async function addEmployee() {
         {
             name: "manager",
             type: "list",
-            message: "Whats their managers name?",
+            message: "What is the managers name?",
             choices: managers
         }
     ]).then(function (res) {
@@ -286,6 +292,7 @@ async function addEmployee() {
     })
 }
 
+//Update employee status
 function updateEmployeeRole() {
     connection.promise().query('SELECT *  FROM employee')
         .then((res) => {
@@ -336,7 +343,7 @@ function updateEmployeeRole() {
 
 }
 
-
+//Delete function to remove department
 function deleteDepartment() {
     connection.promise().query('SELECT * FROM Department')
         .then((res) => {
@@ -372,11 +379,10 @@ function deleteDepartment() {
         });
 
 }
-
+//Delete Employee - same functions
 function deleteEmployee() {
     connection.promise().query('SELECT * FROM employee')
         .then((res) => {
-            // make the choice dept arr
             return res[0].map(emp => {
                 return {
                     name: emp.first_name,
@@ -409,7 +415,7 @@ function deleteEmployee() {
         });
 
 }
-
+//Delete Role - same functions
 function deleteRole() {
     connection.promise().query('SELECT title, id FROM role')
         .then((res) => {
@@ -445,8 +451,7 @@ function deleteRole() {
         });
 
 }
-
-
+//Delete Employee - same functions
 function updateManager() {
     connection.promise().query('SELECT *  FROM employee')
         .then((res) => {
@@ -463,13 +468,13 @@ function updateManager() {
                     type: 'list',
                     name: 'employeeListId',
                     choices: employeeList,
-                    message: 'Please select the employee you want to assign manager to:.'
+                    message: 'Please select the employee you want a manager assigned to.'
                 },
                 {
                     type: 'list',
                     name: 'managerId',
                     choices: await selectManager(),
-                    message: 'Please select the employee you want to make manager.'
+                    message: 'Please select the employee you want to promote to manager.'
                 }
             ])
         })

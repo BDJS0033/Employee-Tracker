@@ -46,7 +46,13 @@ git@github.com:BDJS0033/Employee-Tracker.git
 
 **Run _npm install_ to install all dependencies**
 
-To use the application locally, run _node server.js_ in your CLI, and then open http://localhost:3001 in your preferred browswer. 
+For MySql
+```
+CREATE DATABASE employee;
+USE employee;
+source db/schema.sql
+source db/seeds.sql
+```
 <br />
 
 ## Packages
@@ -91,8 +97,8 @@ ________________________
 <p><a href="https://www.npmjs.com/package/inquirer">Inquirer.js</a></p>
 <p><a href="https://www.npmjs.com/package/mysql">MySQL</a></p>
 <p><a href="https://www.npmjs.com/package/console.table">Console Table</a></p>
-<p><a href="https://www.npmjs.com/package/asciiart-logo">Asciiart-Logo</a></p>
-
+<p><a href="https://www.npmjs.com/package/asciiart-logo">Asciiart-Logo</a></p> 
+<br />
 
 ## GitHub
 ________________
