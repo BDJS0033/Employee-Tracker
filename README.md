@@ -92,7 +92,7 @@ ________________________
 <p><a href="https://www.npmjs.com/package/mysql">MySQL</a></p>
 <p><a href="https://www.npmjs.com/package/console.table">Console Table</a></p>
 <p><a href="https://www.npmjs.com/package/asciiart-logo">Asciiart-Logo</a></p>
-<br />
+
 
 ## GitHub
 ________________

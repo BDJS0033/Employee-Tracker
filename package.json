@@ -20,10 +20,10 @@
   "homepage": "https://github.com/BDJS0033/Employee-Tracker#readme",
   "dependencies": {
     "asciiart-logo": "^0.2.6",
+    "console-table": "^0.1.2",
     "console.table": "^0.10.0",
     "inquirer": "^8.2.2",
     "mysql2": "^2.3.3",
     "npm": "^8.5.5"
-  },
-  "devDependencies": {}
+  }
 }
