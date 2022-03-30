@@ -1,4 +1,4 @@
-# SQL Challenge: Employee Tracker
+# SQL Challenge: Employee Tracker :computer:
 
 # Description:
 
@@ -53,8 +53,6 @@ USE employee;
 source db/schema.sql
 source db/seeds.sql
 ```
-<br />
-
 ## Packages
 ______________
 
@@ -66,6 +64,11 @@ npm install console.table --save
 npm install --save mysql2
 npm install asciiart-logo
 ```
+
+## Demo Video
+________
+
+https://loom.com/share/0d358295fd564a78b4721105fd7bb1ac
 
 ## Schema Database:
 _________
