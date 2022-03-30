@@ -55,7 +55,7 @@ ______________
 Packages requried to be installed:
 
 ```
-npm inquirer
+npm install inquirer
 npm install console.table --save
 npm install --save mysql2
 npm install asciiart-logo
