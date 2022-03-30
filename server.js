@@ -112,7 +112,7 @@ function viewAllDepartments() {
         }
     )
 }
-//All the roles
+//All the roles/sql query
 function viewAllRoles() {
     connection.query(
         'select ro.title as Role_title, ro.salary as Salary , dept.name as DepartmentName from Role ro left join department as dept on dept.id = ro.department_id', (err, res) => {
@@ -165,6 +165,7 @@ function addRoles() {
     //Query all the departments
     connection.promise().query("SELECT * FROM Department")
         .then((res) => {
+        //just want a response
             return res[0].map(dept => {
                 return {
                     name: dept.name,
@@ -296,6 +297,7 @@ async function addEmployee() {
 function updateEmployeeRole() {
     connection.promise().query('SELECT *  FROM employee')
         .then((res) => {
+        //just want a response
             return res[0].map(employee => {
                 return {
                     name: employee.first_name,
@@ -347,6 +349,7 @@ function updateEmployeeRole() {
 function deleteDepartment() {
     connection.promise().query('SELECT * FROM Department')
         .then((res) => {
+        //just want a response
             return res[0].map(dept => {
                 return {
                     name: dept.name,
@@ -379,10 +382,11 @@ function deleteDepartment() {
         });
 
 }
-//Delete Employee - same functions
+//Delete Employee with ID - same functions
 function deleteEmployee() {
     connection.promise().query('SELECT * FROM employee')
         .then((res) => {
+        //just want a response
             return res[0].map(emp => {
                 return {
                     name: emp.first_name,
@@ -415,10 +419,11 @@ function deleteEmployee() {
         });
 
 }
-//Delete Role - same functions
+//Delete Role with ID - same functions
 function deleteRole() {
     connection.promise().query('SELECT title, id FROM role')
         .then((res) => {
+        //just want a response
             return res[0].map(roles => {
                 return {
                     name: roles.title,
@@ -451,10 +456,11 @@ function deleteRole() {
         });
 
 }
-//Delete Employee - same functions
+//Delete Employee with ID - same functions
 function updateManager() {
     connection.promise().query('SELECT *  FROM employee')
         .then((res) => {
+        //just want a response
             return res[0].map(employee => {
                 return {
                     name: employee.first_name,
@@ -468,7 +474,7 @@ function updateManager() {
                     type: 'list',
                     name: 'employeeListId',
                     choices: employeeList,
-                    message: 'Please select the employee you want a manager assigned to.'
+                    message: 'Please select the employee you want to assign a manager to.'
                 },
                 {
                     type: 'list',
@@ -500,10 +506,11 @@ function updateManager() {
             throw err
         });
 }
-
+//View Employees Manager
 function viewEmployeeByManager() {
     connection.promise().query('SELECT *  FROM employee')
         .then((res) => {
+        //just want a response
             return res[0].map(employee => {
                 return {
                     name: employee.first_name,
@@ -517,7 +524,7 @@ function viewEmployeeByManager() {
                     type: 'list',
                     name: 'managerId',
                     choices: managerList,
-                    message: 'Please select the manager you want to view employee by.'
+                    message: 'Please select the manager you want to view employees by.'
                 }
             ])
         })
